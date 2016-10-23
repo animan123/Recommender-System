@@ -1,8 +1,9 @@
 import time
 import pandas as pd
+import pandas as np
+from sklearn.model_selection import train_test_split
 
-def load_invited_info_data(size=1.0):
-	t_start = time.time()
+def load_invited_info_data (size=1.0):
 	data = pd.read_csv(
 		"raw_data/invited_info_train.txt",
 		sep="\t",
@@ -17,8 +18,10 @@ def load_invited_info_data(size=1.0):
 	else:
 		print "Returning ", size, "times invited info data"
 		data = data.sample(frac=size)
-	t_end = time.time()
-	print "Time to load invited_info_data: ", (t_end - t_start)
 	return data
 
-load_invited_info_data(0.1)
+def load_invited_info_split (test_size=0.2):
+	data = load_invited_info_data()
+	return train_test_split(data, test_size = test_size)
+
+
