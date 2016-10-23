@@ -16,10 +16,9 @@ def load_invited_info_data(size=1.0):
 		print "Returning complete invited info data"
 	else:
 		print "Returning ", size, "times invited info data"
-		data = data.sample(n=int(data.shape[0]*size))
+		data = data.sample(frac=size)
 	t_end = time.time()
 	print "Time to load invited_info_data: ", (t_end - t_start)
 	return data
 
-load_invited_info_data()
-
+load_invited_info_data(0.1)
