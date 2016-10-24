@@ -14,8 +14,8 @@ def histogram_question_tag():
 	plt.xlabel("tag bucket")
 	plt.ylabel('bucket count')
 	fig1 = plt.gcf()
-	fig1.savefig("question_tags_histogram")
+	fig1.savefig("plots/question_tags_histogram")
 
 
 
-histogram_question_tag()
+#histogram_question_tag()
