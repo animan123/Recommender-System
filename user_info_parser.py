@@ -15,8 +15,4 @@ def load_all_user_info_data(size=1.0):
 	print "Time to load data: ", (t_end - t_start)
 	return data
 
-data = load_all_user_info_data()
-print data.shape
 
-curr_data = load_user_info_data(data, "de5ee6f16417420e8c6825061bbf1a83")
-print curr_data['w_id']
