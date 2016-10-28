@@ -68,20 +68,20 @@ plt.clf()
 
 
 for i in range(0,total_q_tags):
-	plt.hist(UTG1[i][:,0],50,label = '+ve',normed=True)
-	plt.hist(UTG0[i][:,0],50,label = '-ve',normed=True)
+	plt.hist(UTG1[i][:,0],50,color = 'crimson',label = '+ve',normed=True)
+	plt.hist(UTG0[i][:,0],50,color = 'burlywood',label = '-ve',normed=True)
 	fig1 = plt.gcf()
 	fig1.savefig("upvotes/positive_examples/"+str(i))
 	plt.clf()
 
-	plt.hist(UTG1[i][:,1],50,label = '+ve',normed=True)
-	plt.hist(UTG0[i][:,1],50,label = '-ve',normed=True)
+	plt.hist(UTG1[i][:,1],50,color = 'crimson',label = '+ve',normed=True)
+	plt.hist(UTG0[i][:,1],50,color = 'burlywood',label = '-ve',normed=True)
 	fig1 = plt.gcf()
 	fig1.savefig("total_answers/positive_examples/"+str(i))
 	plt.clf()
 
-	plt.hist(UTG1[i][:,2],50,label = '+ve',normed=True)
-	plt.hist(UTG0[i][:,2],50,label = '-ve',normed=True)
+	plt.hist(UTG1[i][:,2],50,color = 'crimson',label = '+ve',normed=True)
+	plt.hist(UTG0[i][:,2],50,color = 'burlywood',label = '-ve',normed=True)
 	fig1 = plt.gcf()
 	fig1.savefig("good_answers/positive_examples/"+str(i))
 	plt.clf()
