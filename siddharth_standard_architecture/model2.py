@@ -66,35 +66,34 @@ fig1 = plt.gcf()
 fig1.savefig("plots/negative_grp")
 plt.clf()
 
-print UTG1[2].shape
 
 for i in range(0,total_q_tags):
-	plt.plot(UTG1[i][:,0])
+	plt.hist(UTG1[i][:,0],50)
 	fig1 = plt.gcf()
 	fig1.savefig("upvotes/positive_examples/"+str(i))
 	plt.clf()
 
-	plt.plot(UTG1[i][:,1])
+	plt.hist(UTG1[i][:,1],50)
 	fig1 = plt.gcf()
 	fig1.savefig("total_answers/positive_examples/"+str(i))
 	plt.clf()
 
-	plt.plot(UTG1[i][:,2])
+	plt.hist(UTG1[i][:,2],50)
 	fig1 = plt.gcf()
 	fig1.savefig("good_answers/positive_examples/"+str(i))
 	plt.clf()
 
-	plt.plot(UTG0[i][:,0])
+	plt.hist(UTG0[i][:,0],50)
 	fig1 = plt.gcf()
 	fig1.savefig("upvotes/negative_examples/"+str(i))
 	plt.clf()
 
-	plt.plot(UTG0[i][:,1])
+	plt.hist(UTG0[i][:,1],50)
 	fig1 = plt.gcf()
 	fig1.savefig("total_answers/negative_examples/"+str(i))
 	plt.clf()
 
-	plt.plot(UTG0[i][:,2])
+	plt.hist(UTG0[i][:,2],50)
 	fig1 = plt.gcf()
 	fig1.savefig("good_answers/negative_examples/"+str(i))
 	plt.clf()
