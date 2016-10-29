@@ -35,22 +35,16 @@ for i in range(0,total_q_tags):
 	y_test.append(np.append(np.zeros(total_sample_count - train_sample_count),np.ones(total_sample_count - train_sample_count)))
 	#print X_train[i].shape, y_train[i].shape, X_test[i].shape, y_test[i].shape
 	#yo = np.divide(np.sum(z1,axis = 0),z1.shape[0])
-	yo = np.sum(z1,axis = 0)
+	yo = np.divide(np.sum(X1[i],axis = 0),X1[i].shape[0])
 	best_e_tags_in_positive.append(np.argmax(yo))
-	#print best_e_tags_in_positive[i]
-	#print i,"$$$$$$$$$$$$$", yo
 	plt.plot(yo)
+	yo = np.divide(np.sum(X0[i],axis = 0),X0[i].shape[0])
+        best_e_tags_in_negative.append(np.argmax(yo))
+        plt.plot(yo)
 	fig1 = plt.gcf()
-        fig1.savefig("total_plots/"+str(i))
+        fig1.savefig("plots/"+str(i))
 	plt.clf()
 
-for i in range(0,total_q_tags):
-	yo = np.divide(np.sum(X0[i],axis = 0),X0[i].shape[0])
-	best_e_tags_in_negative.append(np.argmax(yo))
-	plt.plot(yo)
-        fig1 = plt.gcf()
-        fig1.savefig("plots_negative/"+str(i))
-        plt.clf()
 
 print np.array(best_e_tags_in_negative) == np.array(best_e_tags_in_positive)
 
