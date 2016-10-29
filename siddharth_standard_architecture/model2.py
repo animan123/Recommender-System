@@ -45,8 +45,12 @@ for i in range(0,total_q_tags):
 	plt.clf()
 
 for i in range(0,total_q_tags):
-	yo = np.sum(X0[i],axis = 0)
+	yo = np.divide(np.sum(X0[i],axis = 0),X0[i].shape[0])
 	best_e_tags_in_negative.append(np.argmax(yo))
+	plt.plot(yo)
+        fig1 = plt.gcf()
+        fig1.savefig("plots_negative/"+str(i))
+        plt.clf()
 
 print np.array(best_e_tags_in_negative) == np.array(best_e_tags_in_positive)
 
@@ -68,20 +72,20 @@ plt.clf()
 
 
 for i in range(0,total_q_tags):
-	plt.hist(UTG1[i][:,0],50,color = 'crimson',label = '+ve',normed=True)
-	plt.hist(UTG0[i][:,0],50,color = 'burlywood',label = '-ve',normed=True)
+	plt.hist(UTG1[i][0:200,0],50,range = [0,5000],label = '+ve',normed=True)
+	plt.hist(UTG0[i][0:200,0],50,range = [0,5000],label = '-ve',normed=True)
 	fig1 = plt.gcf()
 	fig1.savefig("upvotes/positive_examples/"+str(i))
 	plt.clf()
 
-	plt.hist(UTG1[i][:,1],50,color = 'crimson',label = '+ve',normed=True)
-	plt.hist(UTG0[i][:,1],50,color = 'burlywood',label = '-ve',normed=True)
+	plt.hist(UTG1[i][0:200,1],50,range = [0,5000],label = '+ve',normed=True)
+	plt.hist(UTG0[i][0:200,1],50,range = [0,5000],label = '-ve',normed=True)
 	fig1 = plt.gcf()
 	fig1.savefig("total_answers/positive_examples/"+str(i))
 	plt.clf()
 
-	plt.hist(UTG1[i][:,2],50,color = 'crimson',label = '+ve',normed=True)
-	plt.hist(UTG0[i][:,2],50,color = 'burlywood',label = '-ve',normed=True)
+	plt.hist(UTG1[i][0:200,2],50,range = [0,5000],label = '+ve',normed=True)
+	plt.hist(UTG0[i][0:200,2],50,range = [0,5000],label = '-ve',normed=True)
 	fig1 = plt.gcf()
 	fig1.savefig("good_answers/positive_examples/"+str(i))
 	plt.clf()
