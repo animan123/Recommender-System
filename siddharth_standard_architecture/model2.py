@@ -1,9 +1,11 @@
+import operator
+import pylab as pl
 from sklearn.svm import SVC
 import numpy as np
 import random
 import matplotlib.pyplot as plt
 from validation_nolabel_parser import *
-
+import json
 
 np.set_printoptions(threshold=np.nan)
 
@@ -14,6 +16,8 @@ X0 = np.load("negativeData")
 UTG1 = np.load("positiveUTG")
 UTG0 = np.load("negativeUTG")
 validation_set = np.load("validationData")
+#question_words_count = json.load("question_words_count")
+
 
 X_train = []
 X_test = []
@@ -25,6 +29,30 @@ best_e_tags_in_negative = []
 best_e_tags_in_validation = []
 clf_vector = []
 
+question_words_count = {}
+
+with open('question_words_count') as data_file:
+        question_words_count = json.load(data_file)
+
+plt.bar(np.arange(len(question_words_count)), question_words_count.values())
+plt.xticks(np.arange(len(question_words_count)), question_words_count.keys())
+ymax = max(question_words_count.values()) + 1
+plt.ylim(0, ymax)
+fig1 = plt.gcf()
+fig1.savefig("question_word_count")
+plt.clf()
+
+sorted_question_words_count = sorted(question_words_count.items(), key=operator.itemgetter(1))
+sorted_question_words_count = [int(i[1]) for i in sorted_question_words_count]
+
+plt.bar(np.arange(len(sorted_question_words_count)), sorted_question_words_count)
+plt.xticks(np.arange(len(sorted_question_words_count)))
+ymax = max(sorted_question_words_count) + 1
+plt.ylim(0, ymax)
+fig1 = plt.gcf()
+fig1.savefig("sorted_question_word_count")
+plt.clf()
+"""
 for i in range(0,total_q_tags):
 	yo = np.divide(np.sum(X1[i],axis = 0),X1[i].shape[0])
 	best_e_tags_in_positive.append(np.argmax(yo))
@@ -39,6 +67,7 @@ for i in range(0,total_q_tags):
         fig1.savefig("plots/"+str(i))
 	plt.clf()
 
+"""
 
 """
 negative_grp_count_best_tag = []
