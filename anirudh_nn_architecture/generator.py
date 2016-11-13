@@ -2,6 +2,7 @@ from question_info_parser import *
 from user_info_parser import *
 
 import numpy as np
+import random
 
 def load_validation_data ():
 	with open("raw_data/validate_nolabel.txt") as f:
@@ -19,6 +20,7 @@ def load_training_data ():
 			else:
 				for i in range(7):
 					new_data.append (x)
+		random.shuffle (new_data)
 		return new_data
 
 def load_users ():
@@ -45,7 +47,7 @@ def load_questions ():
 	}
 
 class gen:
-	def __init__ (self, batch_size=40000):
+	def __init__ (self, batch_size=5000):
 		self.training_data = load_training_data ()
 		self.validation_data = load_validation_data ()
 		self.questions = load_questions ()
@@ -79,14 +81,14 @@ class gen:
 		training_data = self.trimmed_training_data (validate)
 		question_words = np.zeros ((len(training_data), 4022))
 		for i in range(len(training_data)):
-			question_words[i, self.questions[training_data[i][0]]["char"]] = 1
+			question_words[i, self.questions[training_data[i][0]]["char"]] += 1
 		return question_words
 
 	def get_user_words (self, validate=False):
 		training_data = self.trimmed_training_data (validate)
 		answer_words = np.zeros ((len(training_data), 4022))
 		for i in range(len(training_data)):
-			answer_words[i, self.users[training_data[i][1]]["char"]] = 1
+			answer_words[i, self.users[training_data[i][1]]["char"]] += 1
 		return answer_words
 
 	def get_user_tags (self, validate=False):
@@ -141,4 +143,5 @@ class gen:
 			"user_tags": self.get_user_tags (True),
 			"question_info": self.get_question_info (True),
 		}
+
 
